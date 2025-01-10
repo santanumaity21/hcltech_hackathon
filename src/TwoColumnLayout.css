@@ -1,0 +1,21 @@
+.container {
+    display: flex;
+  }
+  
+  .column {
+    flex: 1;
+    padding: 20px;
+  }
+  
+  .left {
+    flex: 0 0 20%;
+    background-color: #e0e0e0;
+    
+  }
+  
+  .right {
+    flex: 0 0 80%;
+    background-color: #f0f0f0;
+    width: 80%;
+  }
+  
