@@ -8,6 +8,7 @@ import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
 import Home from './home';
 import Login from './login';
 import DoctorDashboard from './doctor';
+import BookAppointment from './BookAppointment';
 
 function App() {
 
@@ -27,12 +28,14 @@ function App() {
     <li><Link to="/login">Login</Link></li>
     <li><Link to="/doctor-dashboard">Doctor Dashboard</Link></li>
     <li><Link to="/patient-dashboard">Patient Dashboard</Link></li>
+    <li><Link to="/book-appointment">Book Appointment</Link></li>
 </ul>
 </nav>
     <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/login" element={<Login />} />
-        <Route path="/doctor-dashboard" element={<DoctorDashboard />} /> 
+        <Route path="/doctor-dashboard" element={<DoctorDashboard />} />
+        <Route path="/book-appointment" element={<BookAppointment />} /> BookAppointment
     </Routes>
 </div>
 

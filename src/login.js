@@ -65,15 +65,15 @@ if(submitted) {
           
             <input type="email" value={email} placeholder='Email'
             onChange={(e) => setEmail(e.target.value)} required 
-            style={{ width: '100%', padding: '0.5rem', marginBottom: '0.5rem' }} />
+            />
           </div>
             <div>
               
               <input type="password" value={password} placeholder='Password'
               onChange={(e) => setPassword(e.target.value)} required 
-              style={{ width: '100%', padding: '0.5rem', marginBottom: '0.5rem' }} />
+               />
             </div>
-            <button type="submit" style={{ width: '100%', padding: '0.5rem', backgroundColor: '#007BFF', color: '#fff', border: 'none', borderRadius: '4px' }}> Login </button>
+            <button type="submit" > Login </button>
             {error && <p style={{ color: 'red' }}>{error}</p>}
           </form>
 
