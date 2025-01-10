@@ -4,7 +4,7 @@ import React, { useState } from 'react';
 
 
 
-function App() {
+function Login() {
 
   const [email, setEmail] = useState(''); 
 const [password, setPassword] = useState(''); 
@@ -49,4 +49,4 @@ const handleSubmit = (e) => {
   );
 }
 
-export default App;
+export default Login;

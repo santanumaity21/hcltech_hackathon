@@ -6,7 +6,7 @@ import React, { useState } from 'react';
 
 
 
-function App() {
+function DoctorDashboard() {
 
 
 
@@ -91,4 +91,4 @@ function App() {
   );
 }
 
-export default App;
+export default DoctorDashboard;

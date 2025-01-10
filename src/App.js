@@ -1,93 +1,42 @@
 
 
-import './TwoColumnLayout.css';
+import './BookAppointmnetLayout.css';
 import './table.css';
 import React, { useState } from 'react';
-
-
+import DatePicker from 'react-datepicker'; 
+import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
+import Home from './home';
+import Login from './login';
+import DoctorDashboard from './doctor';
 
 function App() {
 
+  const [selectedOption, setSelectedOption] = useState(''); 
+  const handleSelectChange = (e) => { setSelectedOption(e.target.value); };
 
+  const [startDate, setStartDate] = useState(new Date()); 
+  const handleChange = (date) => { setStartDate(date); };
+  const [timeSlot, setTimeSlot] = useState('');
 
-  const appointments = [
-    {time: '9:00 AM', patient_name: 'John Doe',reason: 'Annual Check Up'},
-    {time: '10:30 AM', patient_name: 'Jane Smith',reason: 'Follow Up'}
-  ];
-
-  const recent_patients = [
-    {last_visit: '2023-06-01', patient_name: 'John Doe'},
-    {last_visit: '2023-05-26', patient_name: 'Jane Smith'}
-  ];
+  const timeSlots = [ '09:00 AM','10:00 AM', '11 AM', '1:00 PM', '2:00 PM', '3:00 PM' ];
 
   return (
-    <div className="container">
-      <div className="column left">
-        <h2>Bayer Health</h2>
-        <nav className="vertical-menu"> 
-          <ul> 
-            <li><a href="#home">Dashboard</a></li> 
-            <li><a href="#patient-list">Patient List</a></li> 
-            <li><a href="#appointmnets">Appointments</a></li> 
-            <li><a href="#message">Message</a></li> 
-            <li><a href="#logout">Logout</a></li> 
-            </ul> 
-          </nav>
-      </div> 
-      <div className="column right"> 
-        <h2>Welcome, Dr. Smith</h2> 
-        <div>
-            <h3>
-              Today's Appointments
-            </h3>
-        </div>
-        <div class="todays_appoitments">
-          <table className="table-container">
-            <thead>
-               <th>Time</th>
-               <th>Patient Name</th>
-               <th>Reason</th>
-            </thead>
-            <tbody>
-            {appointments.map((appointment, index) => ( 
-          <tr key={index}>
-            
-           <td>{appointment.time}</td>
-           <td>{appointment.patient_name}</td>
-           <td>{ appointment.reason}</td>   
-          
-          </tr> ))}
+    
+    <Router> <div> <nav> <ul> <li>
+    <Link to="/">Home</Link></li>
+    <li><Link to="/login">Login</Link></li>
+    <li><Link to="/doctor-dashboard">Doctor Dashboard</Link></li>
+    <li><Link to="/patient-dashboard">Patient Dashboard</Link></li>
+</ul>
+</nav>
+    <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/doctor-dashboard" element={<DoctorDashboard />} /> 
+    </Routes>
+</div>
 
-            </tbody>
-          </table>
-        </div>
-
-        <div class="recent_patients" style={{margin: '25px'}}>
-        <h3>
-              Recent Patients
-            </h3>
-          <table className="table-container">
-            <thead>
-               <th>Name</th>
-               <th>Last Visit</th>
-               <th>Action</th>
-            </thead>
-            <tbody>
-            {recent_patients.map((recent_patient, index) => ( 
-          <tr key={index}>
-            
-           <td>{recent_patient.patient_name}</td>
-           <td>{recent_patient.last_visit}</td>
-           <td>View Profile</td>   
-          
-          </tr> ))}
-
-            </tbody>
-          </table>
-        </div>
-         
-      </div> 
-      </div>
+</Router>
   );
 }
 
