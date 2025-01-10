@@ -15,7 +15,7 @@ const handleSubmit = (e) => {
   };
 
   const [data, setData] = useState([]);
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
 
   useEffect(() => {
@@ -23,7 +23,7 @@ const handleSubmit = (e) => {
 
       setSubmitted(false);
 
-
+if(submitted) {
       fetch('https://example.com/api/login',
         {
           method: 'POST', headers: { 'Content-Type': 'application/json', },
@@ -43,6 +43,7 @@ const handleSubmit = (e) => {
         })
         .catch((error) => { setError(error.message); });
     }
+  }
   },
     [submitted, email, password]);
 
