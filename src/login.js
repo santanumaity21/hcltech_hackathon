@@ -1,18 +1,55 @@
 import logo from './logo.svg';
 import './App.css';
-import React, { useState } from 'react';
 
+import React, { useState, useEffect } from 'react';
 
 
 function Login() {
 
   const [email, setEmail] = useState(''); 
 const [password, setPassword] = useState(''); 
+const [submitted, setSubmitted] = useState(false);
 const handleSubmit = (e) => { 
   e.preventDefault(); 
-  // Here you would typically handle login logic, like sending a request to the server.
-  //  console.log('Email:', email); console.log('Password:', password);
+  setSubmitted(true);
   };
+
+  const [data, setData] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+
+  useEffect(() => {
+    if (submitted) {
+
+      setSubmitted(false);
+
+
+      fetch('https://example.com/api/login',
+        {
+          method: 'POST', headers: { 'Content-Type': 'application/json', },
+          body: JSON.stringify({ email, password }),
+        })
+        .then((response) => {
+          if (!response.ok) { throw new Error('Network response was not ok'); }
+          return response.json();
+        })
+        .then((data) => {
+          if (data.success) {
+           
+            setError(null);
+          } else {
+            setError('Invalid credentials');
+          }
+        })
+        .catch((error) => { setError(error.message); });
+    }
+  },
+    [submitted, email, password]);
+
+
+
+  if (loading) { return <div>Loading...</div>; } 
+  if (error) { return <div>Error: {error.message}</div>; }
 
   return (
     <div className="App">
@@ -36,6 +73,7 @@ const handleSubmit = (e) => {
               style={{ width: '100%', padding: '0.5rem', marginBottom: '0.5rem' }} />
             </div>
             <button type="submit" style={{ width: '100%', padding: '0.5rem', backgroundColor: '#007BFF', color: '#fff', border: 'none', borderRadius: '4px' }}> Login </button>
+            {error && <p style={{ color: 'red' }}>{error}</p>}
           </form>
 
         </div>
